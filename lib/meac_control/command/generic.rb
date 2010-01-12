@@ -1,4 +1,4 @@
-module Meg50XML
+module MEACControl
   module Command
     class InvalidValue < Exception
     end
@@ -7,7 +7,7 @@ module Meg50XML
       attr_reader :command, :value
 
       def to_set_string
-        raise Meg50XML::Command::InvalidValue if (value.nil? or value.empty?)
+        raise MEACControl::Command::InvalidValue if (value.nil? or value.empty?)
         "#{command}=\"#{value}\""
       end
 

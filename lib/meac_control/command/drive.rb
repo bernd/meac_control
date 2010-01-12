@@ -1,9 +1,9 @@
-require 'meg50xml/command/generic'
+require 'meac_control/command/generic'
 
-module Meg50XML
+module MEACControl
   module Command
     class Drive
-      include Meg50XML::Command::Generic
+      include MEACControl::Command::Generic
 
       def initialize
         @command = 'Drive'

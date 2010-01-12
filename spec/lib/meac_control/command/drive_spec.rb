@@ -1,12 +1,12 @@
 require File.expand_path(File.join(File.dirname(__FILE__), '..', '..', '..', 'spec_helper'))
-require 'meg50xml/command/drive'
+require 'meac_control/command/drive'
 
-describe Meg50XML::Command::Drive do
+describe MEACControl::Command::Drive do
   before(:each) do
-    @cmd = Meg50XML::Command::Drive.new
+    @cmd = MEACControl::Command::Drive.new
   end
 
-  it_should_behave_like "a class that includes Meg50XML::Command::Generic"
+  it_should_behave_like "a class that includes MEACControl::Command::Generic"
 
   it "has set the command to 'Drive'" do
     @cmd.command.should == 'Drive'

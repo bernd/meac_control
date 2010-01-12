@@ -1,12 +1,12 @@
 require File.expand_path(File.join(File.dirname(__FILE__), '..', '..', '..', 'spec_helper'))
-require 'meg50xml/command/generic'
+require 'meac_control/command/generic'
 
 class Cmd; end
 
-describe Meg50XML::Command::Generic do
+describe MEACControl::Command::Generic do
   before(:each) do
     @obj = mock(Cmd, :command= => nil, :value= => nil, :value => "MyValue", :command => "MyCommand")
-    @obj.send(:extend, Meg50XML::Command::Generic)
+    @obj.send(:extend, MEACControl::Command::Generic)
   end
 
   describe "#to_set_string" do
@@ -16,12 +16,12 @@ describe Meg50XML::Command::Generic do
 
     it "will raise an exception if value is nil" do
       @obj.stub!(:value).and_return(nil)
-      lambda { @obj.to_set_string }.should raise_error(Meg50XML::Command::InvalidValue)
+      lambda { @obj.to_set_string }.should raise_error(MEACControl::Command::InvalidValue)
     end
 
     it "will raise an exception if value is an empty string" do
       @obj.stub!(:value).and_return('')
-      lambda { @obj.to_set_string }.should raise_error(Meg50XML::Command::InvalidValue)
+      lambda { @obj.to_set_string }.should raise_error(MEACControl::Command::InvalidValue)
     end
   end
 

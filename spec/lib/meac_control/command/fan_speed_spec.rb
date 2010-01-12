@@ -1,12 +1,12 @@
 require File.expand_path(File.join(File.dirname(__FILE__), '..', '..', '..', 'spec_helper'))
-require 'meg50xml/command/fan_speed'
+require 'meac_control/command/fan_speed'
 
-describe Meg50XML::Command::FanSpeed do
+describe MEACControl::Command::FanSpeed do
   before(:each) do
-    @cmd = Meg50XML::Command::FanSpeed.new
+    @cmd = MEACControl::Command::FanSpeed.new
   end
 
-  it_should_behave_like "a class that includes Meg50XML::Command::Generic"
+  it_should_behave_like "a class that includes MEACControl::Command::Generic"
 
   it "has set the command to 'FanSpeed'" do
     @cmd.command.should == 'FanSpeed'
