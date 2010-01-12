@@ -1,6 +1,5 @@
-require File.expand_path(File.join(File.dirname(__FILE__), '..', '..', 'spec_helper'))
-require 'ostruct'
-require 'meg50xml/command'
+require File.expand_path(File.join(File.dirname(__FILE__), '..', '..', '..', 'spec_helper'))
+require 'meg50xml/command/generic'
 
 class Cmd; end
 
@@ -51,59 +50,6 @@ describe Meg50XML::Command::Generic do
       it "returns false" do
         @obj.stub!(:value).and_return(nil)
         @obj.command_set?.should be_false
-      end
-    end
-  end
-end
-
-shared_examples_for "a class that includes Meg50XML::Command::Generic" do
-  it "includes Meg50XML::Command::Generic" do
-    @cmd.class.ancestors.should include(Meg50XML::Command::Generic)
-  end
-end
-
-describe Meg50XML::Command::Drive do
-  before(:each) do
-    @cmd = Meg50XML::Command::Drive.new
-  end
-
-  it_should_behave_like "a class that includes Meg50XML::Command::Generic"
-
-  it "has set the command to 'Drive'" do
-    @cmd.command.should == 'Drive'
-  end
-
-  describe "#on" do
-    it "sets the value to 'ON'" do
-      @cmd.on
-      @cmd.value.should == 'ON'
-    end
-  end
-
-  describe "#off" do
-    it "sets the value to 'OFF'" do
-      @cmd.off
-      @cmd.value.should == 'OFF'
-    end
-  end
-end
-
-describe Meg50XML::Command::FanSpeed do
-  before(:each) do
-    @cmd = Meg50XML::Command::FanSpeed.new
-  end
-
-  it_should_behave_like "a class that includes Meg50XML::Command::Generic"
-
-  it "has set the command to 'FanSpeed'" do
-    @cmd.command.should == 'FanSpeed'
-  end
-
-  %w{low mid1 mid2 high auto}.each do |c|
-    describe "##{c}" do
-      it "sets the value to '#{c}'" do
-        @cmd.send(c)
-        @cmd.value.should == c
       end
     end
   end
