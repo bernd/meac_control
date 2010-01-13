@@ -11,8 +11,16 @@ module MEACControl
         "#{command}=\"#{value}\""
       end
 
+      def to_set_hash
+        {command.to_sym => value}
+      end
+
       def to_get_string
         "#{command}=\"*\""
+      end
+
+      def to_get_hash
+        {command.to_sym => '*'}
       end
 
       def command_set?

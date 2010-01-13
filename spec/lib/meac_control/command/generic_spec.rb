@@ -25,9 +25,21 @@ describe MEACControl::Command::Generic do
     end
   end
 
+  describe "#to_set_hash" do
+    it "returns the command and value as a hash" do
+      @obj.to_set_hash.should == {@obj.command.to_sym => @obj.value}
+    end
+  end
+
   describe "#to_get_string" do
     it "returns the string representation of command and the value '*'" do
       @obj.to_get_string.should == "#{@obj.command}=\"*\""
+    end
+  end
+
+  describe "#to_get_hash" do
+    it "returns the command and value as a hash" do
+      @obj.to_get_hash.should == {@obj.command.to_sym => '*'}
     end
   end
 
