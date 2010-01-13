@@ -26,8 +26,12 @@ describe MEACControl::XML::GetRequest do
   describe "#to_xml" do
     before(:each) do
       device = mock(Dev, :id => 23)
-      command = mock(Cmd, :to_get_string => 'Command="*"', :to_get_hash => {:Command => '*'})
-      @req = MEACControl::XML::GetRequest.new(:devices => device, :commands => command)
+      commands = [
+        mock(Cmd, :to_get_string => 'Command="*"', :to_get_hash => {:Command1 => '*'}),
+        mock(Cmd, :to_get_string => 'Command="*"', :to_get_hash => {:Command2 => '*'}),
+        mock(Cmd, :to_get_string => 'Command="*"', :to_get_hash => {:Command3  => '*'})
+      ]
+      @req = MEACControl::XML::GetRequest.new(:devices => device, :commands => commands)
       @xml = Nokogiri::XML(@req.to_xml)
       @children = @xml.root.children.reject {|node| node.is_a?(Nokogiri::XML::Text)}
     end
@@ -76,9 +80,19 @@ describe MEACControl::XML::GetRequest do
         @mnet.attribute('Group').value.should == "23"
       end
 
-      it "has a 'Command' attribute with value '*'" do
-        @mnet.key?('Command').should be_true
-        @mnet.attribute('Command').value.should == "*"
+      it "has a 'Command1' attribute with value '*'" do
+        @mnet.key?('Command1').should be_true
+        @mnet.attribute('Command1').value.should == "*"
+      end
+
+      it "has a 'Command2' attribute with value '*'" do
+        @mnet.key?('Command2').should be_true
+        @mnet.attribute('Command2').value.should == "*"
+      end
+
+      it "has a 'Command3' attribute with value '*'" do
+        @mnet.key?('Command3').should be_true
+        @mnet.attribute('Command3').value.should == "*"
       end
 
       it "has a parent node named 'DatabaseManager'" do
