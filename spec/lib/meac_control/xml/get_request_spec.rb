@@ -33,7 +33,6 @@ describe MEACControl::XML::GetRequest do
       ]
       @req = MEACControl::XML::GetRequest.new(:devices => device, :commands => commands)
       @xml = Nokogiri::XML(@req.to_xml)
-      @children = @xml.root.children.reject {|node| node.is_a?(Nokogiri::XML::Text)}
     end
 
     it "has one root node named 'Packet'" do
