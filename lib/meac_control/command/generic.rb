@@ -12,6 +12,7 @@ module MEACControl
       end
 
       def to_set_hash
+        raise MEACControl::Command::InvalidValue if (value.nil? or value.empty?)
         {command.to_sym => value}
       end
 

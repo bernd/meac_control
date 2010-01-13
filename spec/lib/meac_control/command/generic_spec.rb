@@ -29,6 +29,16 @@ describe MEACControl::Command::Generic do
     it "returns the command and value as a hash" do
       @obj.to_set_hash.should == {@obj.command.to_sym => @obj.value}
     end
+
+    it "will raise an exception if value is nil" do
+      @obj.stub!(:value).and_return(nil)
+      lambda { @obj.to_set_hash }.should raise_error(MEACControl::Command::InvalidValue)
+    end
+
+    it "will raise an exception if value is an empty string" do
+      @obj.stub!(:value).and_return('')
+      lambda { @obj.to_set_hash }.should raise_error(MEACControl::Command::InvalidValue)
+    end
   end
 
   describe "#to_get_string" do
