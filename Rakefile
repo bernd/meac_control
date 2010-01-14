@@ -11,6 +11,8 @@ begin
     gem.homepage = "http://github.com/bernd/meac_control"
     gem.authors = ["Bernd Ahlers"]
 
+    gem.files = FileList["LICENSE", "README.rdoc", "Rakefile", "VERSION.yml", "{lib,spec}/**/*"]
+
     gem.add_development_dependency "rspec", ">= 1.2.9"
 
     gem.add_dependency "httpclient"
