@@ -4,7 +4,7 @@ module MEACControl
   module XML
     class SetRequest < AbstractRequest
       def to_xml
-        xml_template('setRequest')
+        xml_template('setRequest', :set)
       end
     end
   end

@@ -47,31 +47,43 @@ describe MEACControl::Command::Generic do
     end
   end
 
-  describe "#to_set_hash" do
-    it "returns the command and value as a hash" do
-      @obj.to_set_hash.should == {@obj.command.to_sym => @obj.value}
+  describe "#hash_for" do
+    it "will raise an exception if it's called without argument" do
+      lambda { @obj.hash_for }.should raise_error(ArgumentError)
     end
 
-    it "will raise an exception if value is nil" do
-      @obj.stub!(:value).and_return(nil)
-      lambda { @obj.to_set_hash }.should raise_error(MEACControl::Command::InvalidValue)
+    context "with the :get argument" do
+      it "returns a hash with the command name as key and a value of '*'" do
+        @obj.hash_for(:get).should == {@obj.command.to_sym => '*'}
+      end
     end
 
-    it "will raise an exception if value is an empty string" do
-      @obj.stub!(:value).and_return('')
-      lambda { @obj.to_set_hash }.should raise_error(MEACControl::Command::InvalidValue)
+    context "with the :set argument" do
+      it "returns a hash with the command as key and the command value as value" do
+        @obj.hash_for(:set).should == {@obj.command.to_sym => @obj.value}
+      end
+
+      it "will raise an exception if value is nil" do
+        @obj.stub!(:value).and_return(nil)
+        lambda { @obj.hash_for(:set) }.should raise_error(MEACControl::Command::InvalidValue)
+      end
+
+      it "will raise an exception if value is an empty string" do
+        @obj.stub!(:value).and_return('')
+        lambda { @obj.hash_for(:set) }.should raise_error(MEACControl::Command::InvalidValue)
+      end
+    end
+
+    context "with an unknown argument" do
+      it "will raise an exception" do
+        lambda { @obj.hash_for(:foobar_unknown) }.should raise_error(MEACControl::Command::InvalidMode)
+      end
     end
   end
 
   describe "#to_get_string" do
     it "returns the string representation of command and the value '*'" do
       @obj.to_get_string.should == "#{@obj.command}=\"*\""
-    end
-  end
-
-  describe "#to_get_hash" do
-    it "returns the command and value as a hash" do
-      @obj.to_get_hash.should == {@obj.command.to_sym => '*'}
     end
   end
 

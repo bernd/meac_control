@@ -14,9 +14,9 @@ describe MEACControl::XML::GetRequest do
     it "returns a xml string with 'getRequest' in the <Command> element" do
       device = mock(Dev, :id => 23)
       commands = [
-        mock(Cmd, :to_get_hash => {:Command1 => 'ON'}),
-        mock(Cmd, :to_get_hash => {:Command2 => 'ON'}),
-        mock(Cmd, :to_get_hash => {:Command3  => 'ON'})
+        mock(Cmd, :hash_for => {:Command1 => 'ON'}),
+        mock(Cmd, :hash_for => {:Command2 => 'ON'}),
+        mock(Cmd, :hash_for => {:Command3  => 'ON'})
       ]
       req = MEACControl::XML::GetRequest.new(device, commands)
       xml = Nokogiri::XML(req.to_xml)

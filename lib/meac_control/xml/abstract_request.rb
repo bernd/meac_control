@@ -15,7 +15,7 @@ module MEACControl
       end
 
       private
-        def xml_template(command)
+        def xml_template(command, mode)
           ::Nokogiri::XML::Builder.new(:encoding => 'UTF-8') do
             Packet do
               Command command
@@ -23,7 +23,7 @@ module MEACControl
                 devices.each do |dev|
                   attributes = {:Group => dev.id}
                   commands.each do |cmd|
-                    attributes.merge!(cmd.to_get_hash)
+                    attributes.merge!(cmd.hash_for(mode))
                   end
                   Mnet(attributes)
                 end

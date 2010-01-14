@@ -3,6 +3,9 @@ module MEACControl
     class InvalidValue < Exception
     end
 
+    class InvalidMode < Exception
+    end
+
     class Generic
       attr_reader :command, :value
 
@@ -15,17 +18,19 @@ module MEACControl
         "#{command}=\"#{value}\""
       end
 
-      def to_set_hash
-        raise MEACControl::Command::InvalidValue if (value.nil? or value.empty?)
-        {command.to_sym => value}
+      def hash_for(mode)
+        if mode == :set
+          raise MEACControl::Command::InvalidValue if (value.nil? or value.empty?)
+          {command.to_sym => value}
+        elsif mode == :get
+          {command.to_sym => '*'}
+        else
+          raise MEACControl::Command::InvalidMode
+        end
       end
 
       def to_get_string
         "#{command}=\"*\""
-      end
-
-      def to_get_hash
-        {command.to_sym => '*'}
       end
 
       def command_set?

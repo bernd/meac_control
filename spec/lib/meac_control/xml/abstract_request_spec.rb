@@ -6,7 +6,7 @@ class Cmd; end
 
 class MyRequest < MEACControl::XML::AbstractRequest
   def to_xml
-    xml_template('myRequest')
+    xml_template('myRequest', :get)
   end
 end
 
@@ -66,9 +66,9 @@ describe MEACControl::XML::AbstractRequest do
     before(:each) do
       device = mock(Dev, :id => 23)
       commands = [
-        mock(Cmd, :to_get_string => 'Command="*"', :to_get_hash => {:Command1 => '*'}),
-        mock(Cmd, :to_get_string => 'Command="*"', :to_get_hash => {:Command2 => '*'}),
-        mock(Cmd, :to_get_string => 'Command="*"', :to_get_hash => {:Command3  => '*'})
+        mock(Cmd, :hash_for => {:Command1 => '*'}),
+        mock(Cmd, :hash_for => {:Command2 => '*'}),
+        mock(Cmd, :hash_for => {:Command3  => '*'})
       ]
       @req = MyRequest.new(device, commands)
       @xml = Nokogiri::XML(@req.to_xml)
