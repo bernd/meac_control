@@ -6,6 +6,10 @@ module MEACControl
     class Generic
       attr_reader :command, :value
 
+      def self.request
+        new.freeze
+      end
+
       def to_set_string
         raise MEACControl::Command::InvalidValue if (value.nil? or value.empty?)
         "#{command}=\"#{value}\""

@@ -21,6 +21,16 @@ describe MEACControl::Command::Generic do
     @obj = Cmd.new
   end
 
+  describe ".request" do
+    it "returns a new frozen object" do
+      Cmd.request.should be_frozen
+    end
+
+    it "does not allow modifications" do
+      lambda { Cmd.request.on }.should raise_error(TypeError)
+    end
+  end
+
   describe "#to_set_string" do
     it "returns the string representation of command and value" do
       @obj.to_set_string.should == "#{@obj.command}=\"#{@obj.value}\""
