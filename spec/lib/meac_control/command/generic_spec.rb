@@ -10,10 +10,6 @@ class Cmd < MEACControl::Command::Generic
   def on
     @value = 'ON'
   end
-
-  def off
-    @value = 'OFF'
-  end
 end
 
 describe MEACControl::Command::Generic do
