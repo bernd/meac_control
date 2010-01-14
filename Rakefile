@@ -41,7 +41,7 @@ task :default => :spec
 
 require 'rake/rdoctask'
 Rake::RDocTask.new do |rdoc|
-  version = File.exist?('VERSION') ? File.read('VERSION') : ""
+  version = Jeweler::VersionHelper.new(File.dirname(__FILE__))
 
   rdoc.rdoc_dir = 'rdoc'
   rdoc.title = "MEACControl #{version}"
