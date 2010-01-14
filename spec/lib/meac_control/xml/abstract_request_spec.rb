@@ -47,6 +47,13 @@ describe MEACControl::XML::AbstractRequest do
     }.should raise_error(MEACControl::XML::Request::EmptyCommandList)
   end
 
+  describe "#xml_template" do
+    it "is not accessible as a instance method" do
+      req = MyRequest.new(:one, :two)
+      lambda { req.xml_template }.should raise_error(NoMethodError)
+    end
+  end
+
   # Example XML output:
   #   <?xml version="1.0" encoding="UTF-8"?>
   #   <Packet>
