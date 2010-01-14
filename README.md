@@ -1,4 +1,4 @@
-= MEACControl
+## MEACControl
 
 The library provides some Ruby classes to interact with a Mitsubishi Electric
 G-50A centralized controller. This device is used to control up to 50 indoor
@@ -9,11 +9,11 @@ The G-50A offers a XML API for the communication.
 So far, the library has only been tested with a G-50A. I'm not sure if there
 are other controller/devices which use the same API.
 
-== Code Examples
+### Code Examples
 
-Please see the <tt>example</tt> directory for code examples.
+Please see the `example` directory for code examples.
 
-== Note on Patches/Pull Requests
+### Note on Patches/Pull Requests
 
 * Fork the project.
 * Write a spec to cover a bug or a new feature.
@@ -23,6 +23,6 @@ Please see the <tt>example</tt> directory for code examples.
   commit by itself I can ignore when I pull)
 * Send me a pull request. Bonus points for topic branches.
 
-== Copyright
+### Copyright
 
 Copyright (c) 2010 Bernd Ahlers. See LICENSE for details.
