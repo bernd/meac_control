@@ -1,12 +1,24 @@
 require File.expand_path(File.join(File.dirname(__FILE__), '..', '..', '..', 'spec_helper'))
 require 'meac_control/command/generic'
 
-class Cmd; end
+class Cmd < MEACControl::Command::Generic
+  def initialize
+    @command = "MyCommand"
+    @value = "MyValue"
+  end
+
+  def on
+    @value = 'ON'
+  end
+
+  def off
+    @value = 'OFF'
+  end
+end
 
 describe MEACControl::Command::Generic do
   before(:each) do
-    @obj = mock(Cmd, :command= => nil, :value= => nil, :value => "MyValue", :command => "MyCommand")
-    @obj.send(:extend, MEACControl::Command::Generic)
+    @obj = Cmd.new
   end
 
   describe "#to_set_string" do

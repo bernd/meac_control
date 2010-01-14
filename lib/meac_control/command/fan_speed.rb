@@ -2,8 +2,7 @@ require 'meac_control/command/generic'
 
 module MEACControl
   module Command
-    class FanSpeed
-      include MEACControl::Command::Generic
+    class FanSpeed < Generic
 
       def initialize
         @command = 'FanSpeed'

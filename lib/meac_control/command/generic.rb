@@ -3,7 +3,7 @@ module MEACControl
     class InvalidValue < Exception
     end
 
-    module Generic
+    class Generic
       attr_reader :command, :value
 
       def to_set_string

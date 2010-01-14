@@ -2,8 +2,7 @@ require 'meac_control/command/generic'
 
 module MEACControl
   module Command
-    class Drive
-      include MEACControl::Command::Generic
+    class Drive < Generic
 
       def initialize
         @command = 'Drive'
