@@ -13,11 +13,6 @@ module MEACControl
         new.freeze
       end
 
-      def to_set_string
-        raise MEACControl::Command::InvalidValue if (value.nil? or value.empty?)
-        "#{command}=\"#{value}\""
-      end
-
       def hash_for(mode)
         if mode == :set
           raise MEACControl::Command::InvalidValue if (value.nil? or value.empty?)
@@ -27,10 +22,6 @@ module MEACControl
         else
           raise MEACControl::Command::InvalidMode
         end
-      end
-
-      def to_get_string
-        "#{command}=\"*\""
       end
 
       def command_set?

@@ -31,22 +31,6 @@ describe MEACControl::Command::Generic do
     end
   end
 
-  describe "#to_set_string" do
-    it "returns the string representation of command and value" do
-      @obj.to_set_string.should == "#{@obj.command}=\"#{@obj.value}\""
-    end
-
-    it "will raise an exception if value is nil" do
-      @obj.stub!(:value).and_return(nil)
-      lambda { @obj.to_set_string }.should raise_error(MEACControl::Command::InvalidValue)
-    end
-
-    it "will raise an exception if value is an empty string" do
-      @obj.stub!(:value).and_return('')
-      lambda { @obj.to_set_string }.should raise_error(MEACControl::Command::InvalidValue)
-    end
-  end
-
   describe "#hash_for" do
     it "will raise an exception if it's called without argument" do
       lambda { @obj.hash_for }.should raise_error(ArgumentError)
@@ -78,12 +62,6 @@ describe MEACControl::Command::Generic do
       it "will raise an exception" do
         lambda { @obj.hash_for(:foobar_unknown) }.should raise_error(MEACControl::Command::InvalidMode)
       end
-    end
-  end
-
-  describe "#to_get_string" do
-    it "returns the string representation of command and the value '*'" do
-      @obj.to_get_string.should == "#{@obj.command}=\"*\""
     end
   end
 
