@@ -14,11 +14,11 @@ Gem::Specification.new do |s|
   s.email = %q{bernd@tuneafish.de}
   s.extra_rdoc_files = [
     "LICENSE",
-     "README.rdoc"
+     "README.md"
   ]
   s.files = [
     "LICENSE",
-     "README.rdoc",
+     "README.md",
      "Rakefile",
      "VERSION.yml",
      "lib/meac_control.rb",
