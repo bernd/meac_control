@@ -48,7 +48,7 @@ describe MEACControl::XML::AbstractRequest do
   end
 
   describe "#xml_template" do
-    it "is not accessible as a instance method" do
+    it "is not accessible as an instance method" do
       req = MyRequest.new(:one, :two)
       lambda { req.xml_template }.should raise_error(NoMethodError)
     end
