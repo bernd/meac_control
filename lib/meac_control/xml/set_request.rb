@@ -6,7 +6,7 @@ module MEACControl
       # returns a xml set request.
       #
       # example:
-      #   req = MEACControl::XML::SetRequest(device, command)
+      #   req = MEACControl::XML::SetRequest.new(device, command)
       #   req.to_xml # => "<?xml version="1.0" encoding="UTF-8"?>..."
       def to_xml
         xml_template('setRequest', :set)
