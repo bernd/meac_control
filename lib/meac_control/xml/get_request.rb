@@ -1,22 +1,17 @@
 require 'nokogiri'
+require 'meac_control/xml/exceptions'
 
 module MEACControl
   module XML
     class GetRequest
       attr_reader :devices, :commands
 
-      def initialize(options = {})
-        @devices = []
-        @commands = []
+      def initialize(devices, commands)
+        @devices = [devices].compact.flatten
+        @commands = [commands].compact.flatten
 
-        if options[:devices]
-          @devices << options[:devices]
-          @devices.flatten!
-        end
-        if options[:commands]
-          @commands << options[:commands]
-          @commands.flatten!
-        end
+        raise MEACControl::XML::Request::EmptyDeviceList if @devices.empty?
+        raise MEACControl::XML::Request::EmptyCommandList if @commands.empty?
       end
 
       def to_xml

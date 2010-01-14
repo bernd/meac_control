@@ -5,14 +5,40 @@ class Dev; end
 class Cmd; end
 
 describe MEACControl::XML::SetRequest do
-  it "creates a get request with a list of devices" do
-    req = MEACControl::XML::SetRequest.new(:devices => [:one, :two])
-    req.should have(2).devices
+  it "creates a get request with one device and a list of commands" do
+    req = MEACControl::XML::SetRequest.new(:one, [:one, :two, :three])
+    req.should have(1).devices
+    req.should have(3).commands
   end
 
-  it "creates a get request with a list of commands" do
-    req = MEACControl::XML::SetRequest.new(:commands => [:one, :two, :three])
+  it "creates a get request with a list of devices and commands" do
+    req = MEACControl::XML::SetRequest.new([:one, :two], [:one, :two, :three])
+    req.should have(2).devices
     req.should have(3).commands
+  end
+
+  it "creates a get request with one device and one command" do
+    req = MEACControl::XML::SetRequest.new(:two, :one)
+    req.should have(1).devices
+    req.should have(1).commands
+  end
+
+  it "fails to create a valid get request with an empty device list" do
+    lambda {
+      MEACControl::XML::SetRequest.new([], [:one, :two, :three])
+    }.should raise_error(MEACControl::XML::Request::EmptyDeviceList)
+  end
+
+  it "fails to create a valid get request with a nil device" do
+    lambda {
+      MEACControl::XML::SetRequest.new(nil, [:one, :two, :three])
+    }.should raise_error(MEACControl::XML::Request::EmptyDeviceList)
+  end
+
+  it "fails to create a valid get request with a nil command" do
+    lambda {
+      MEACControl::XML::SetRequest.new([:one, :two, :three], nil)
+    }.should raise_error(MEACControl::XML::Request::EmptyCommandList)
   end
 
   # Example XML output:
@@ -31,7 +57,7 @@ describe MEACControl::XML::SetRequest do
         mock(Cmd, :to_get_string => 'Command="ON"', :to_get_hash => {:Command2 => 'ON'}),
         mock(Cmd, :to_get_string => 'Command="ON"', :to_get_hash => {:Command3  => 'ON'})
       ]
-      @req = MEACControl::XML::SetRequest.new(:devices => device, :commands => commands)
+      @req = MEACControl::XML::SetRequest.new(device, commands)
       @xml = Nokogiri::XML(@req.to_xml)
     end
 
