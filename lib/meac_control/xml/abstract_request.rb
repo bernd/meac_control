@@ -14,22 +14,23 @@ module MEACControl
         raise MEACControl::XML::Request::EmptyCommandList if @commands.empty?
       end
 
-      def xml_template(command)
-        ::Nokogiri::XML::Builder.new(:encoding => 'UTF-8') do
-          Packet do
-            Command command
-            DatabaseManager do
-              devices.each do |dev|
-                attributes = {:Group => dev.id}
-                commands.each do |cmd|
-                  attributes.merge!(cmd.to_get_hash)
+      private
+        def xml_template(command)
+          ::Nokogiri::XML::Builder.new(:encoding => 'UTF-8') do
+            Packet do
+              Command command
+              DatabaseManager do
+                devices.each do |dev|
+                  attributes = {:Group => dev.id}
+                  commands.each do |cmd|
+                    attributes.merge!(cmd.to_get_hash)
+                  end
+                  Mnet(attributes)
                 end
-                Mnet(attributes)
               end
             end
-          end
-        end.to_xml
-      end
+          end.to_xml
+        end
     end
   end
 end
