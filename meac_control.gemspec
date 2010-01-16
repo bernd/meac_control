@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Bernd Ahlers"]
-  s.date = %q{2010-01-14}
+  s.date = %q{2010-01-16}
   s.description = %q{Library to communicate with a Mitsubishi Electric G-50A centralized controller}
   s.email = %q{bernd@tuneafish.de}
   s.extra_rdoc_files = [
@@ -27,17 +27,25 @@ Gem::Specification.new do |s|
      "lib/meac_control/command/fan_speed.rb",
      "lib/meac_control/command/generic.rb",
      "lib/meac_control/device.rb",
+     "lib/meac_control/http.rb",
      "lib/meac_control/xml.rb",
      "lib/meac_control/xml/abstract_request.rb",
      "lib/meac_control/xml/exceptions.rb",
      "lib/meac_control/xml/get_request.rb",
+     "lib/meac_control/xml/response.rb",
      "lib/meac_control/xml/set_request.rb",
+     "spec/fixtures/get-request.xml",
+     "spec/fixtures/get-response-error.xml",
+     "spec/fixtures/get-response-ok.xml",
+     "spec/fixtures/set-request.xml",
      "spec/lib/meac_control/command/drive_spec.rb",
      "spec/lib/meac_control/command/fan_speed_spec.rb",
      "spec/lib/meac_control/command/generic_spec.rb",
      "spec/lib/meac_control/device_spec.rb",
+     "spec/lib/meac_control/http_spec.rb",
      "spec/lib/meac_control/xml/abstract_request_spec.rb",
      "spec/lib/meac_control/xml/get_request_spec.rb",
+     "spec/lib/meac_control/xml/response_spec.rb",
      "spec/lib/meac_control/xml/set_request_spec.rb",
      "spec/spec.opts",
      "spec/spec_helper.rb",
@@ -52,10 +60,12 @@ Gem::Specification.new do |s|
     "spec/lib/meac_control/command/drive_spec.rb",
      "spec/lib/meac_control/command/fan_speed_spec.rb",
      "spec/lib/meac_control/command/generic_spec.rb",
+     "spec/lib/meac_control/http_spec.rb",
      "spec/lib/meac_control/device_spec.rb",
      "spec/lib/meac_control/xml/get_request_spec.rb",
      "spec/lib/meac_control/xml/set_request_spec.rb",
      "spec/lib/meac_control/xml/abstract_request_spec.rb",
+     "spec/lib/meac_control/xml/response_spec.rb",
      "spec/spec_helper.rb",
      "spec/support/shared_examples.rb"
   ]
