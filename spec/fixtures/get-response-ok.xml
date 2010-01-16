@@ -2,6 +2,6 @@
 <Packet>
   <Command>getResponse</Command>
   <DatabaseManager>
-    <Mnet Drive="OFF" Group="31" />
+    <Mnet Drive="OFF" Group="31"/>
   </DatabaseManager>
 </Packet>

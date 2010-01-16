@@ -2,7 +2,7 @@
 <Packet>
   <Command>geErrorResponse</Command>
   <DatabaseManager>
-    <Mnet Drive="*" Group="31" />
-    <ERROR Point="geRequest" Code="0102" Message="Insufficiency Attribute" />
+    <Mnet Drive="*" Group="31"/>
+    <ERROR Point="geRequest" Code="0102" Message="Insufficiency Attribute"/>
   </DatabaseManager>
 </Packet>
