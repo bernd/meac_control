@@ -7,7 +7,6 @@ require 'ostruct'
 require 'optparse'
 require 'rubygems'
 require 'meac_control'
-require 'httpclient'
 
 options = OpenStruct.new
 options.commands = []
