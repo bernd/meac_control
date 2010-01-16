@@ -20,7 +20,7 @@ module MEACControl
       private
         def action(host, request)
           resp = HTTPClient.post(sprintf(URI_TEMPLATE, host), request.to_xml, DEFAULT_HEADER)
-          MEACControl::XML::Response.new(resp.content)
+          MEACControl::XML::Response.new(resp.content, request)
         end
     end
   end

@@ -28,13 +28,13 @@ describe MEACControl::HTTP do
 
   describe ".get" do
     before(:each) do
-      xml = mock('xml_request', :to_xml => fixture_read('get-request.xml'))
+      @xml = mock('xml_request', :to_xml => fixture_read('get-request.xml'))
 
-      HTTPClient.should_receive(:post).with(@uri, xml.to_xml, MEACControl::HTTP::DEFAULT_HEADER).and_return do
+      HTTPClient.should_receive(:post).with(@uri, @xml.to_xml, MEACControl::HTTP::DEFAULT_HEADER).and_return do
         mock('http_response', :content => fixture_read('get-response-ok.xml'))
       end
 
-      MEACControl::XML::GetRequest.should_receive(:new).with(@device, @command).and_return(xml)
+      MEACControl::XML::GetRequest.should_receive(:new).with(@device, @command).and_return(@xml)
     end
 
     it "executes a get request" do
@@ -44,17 +44,21 @@ describe MEACControl::HTTP do
     it "returns a response object" do
       MEACControl::HTTP.get(@hostname, @device, @command).should be_ok
     end
+
+    it "returns a response object which includes the request object" do
+      MEACControl::HTTP.get(@hostname, @device, @command).request.should == @xml
+    end
   end
 
   describe ".set" do
     before(:each) do
-      xml = mock('xml_request', :to_xml => fixture_read('set-request.xml'))
+      @xml = mock('xml_request', :to_xml => fixture_read('set-request.xml'))
 
-      HTTPClient.should_receive(:post).with(@uri, xml.to_xml, MEACControl::HTTP::DEFAULT_HEADER).and_return do
+      HTTPClient.should_receive(:post).with(@uri, @xml.to_xml, MEACControl::HTTP::DEFAULT_HEADER).and_return do
         mock('http_response', :content => fixture_read('get-response-ok.xml'))
       end
 
-      MEACControl::XML::SetRequest.should_receive(:new).with(@device, @command).and_return(xml)
+      MEACControl::XML::SetRequest.should_receive(:new).with(@device, @command).and_return(@xml)
     end
 
     it "executes a set request" do
@@ -63,6 +67,10 @@ describe MEACControl::HTTP do
 
     it "returns a response object" do
       MEACControl::HTTP.set(@hostname, @device, @command).should be_ok
+    end
+
+    it "returns a response object which includes the request object" do
+      MEACControl::HTTP.set(@hostname, @device, @command).request.should == @xml
     end
   end
 end
