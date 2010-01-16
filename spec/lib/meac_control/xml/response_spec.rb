@@ -3,25 +3,8 @@ require 'meac_control/xml/response'
 
 describe MEACControl::XML::Response do
   before(:each) do
-    @string_ok = <<-__EOF
-<?xml version="1.0" encoding="UTF-8"?>
-<Packet>
-  <Command>getResponse</Command>
-  <DatabaseManager>
-    <Mnet Drive="OFF" Group="31" />
-  </DatabaseManager>
-</Packet>
-    __EOF
-    @string_error = <<-__EOF
-<?xml version="1.0" encoding="UTF-8"?>
-<Packet>
-  <Command>geErrorResponse</Command>
-  <DatabaseManager>
-    <Mnet Drive="*" Group="31" />
-    <ERROR Point="geRequest" Code="0102" Message="Insufficiency Attribute" />
-  </DatabaseManager>
-</Packet>
-    __EOF
+    @string_ok = File.read(File.join(SPEC_ROOT, 'fixtures', 'get-response-ok.xml'))
+    @string_error = File.read(File.join(SPEC_ROOT, 'fixtures', 'get-response-error.xml'))
   end
 
   it "creates a response from a xml string" do
