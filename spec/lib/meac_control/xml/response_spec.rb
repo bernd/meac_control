@@ -29,6 +29,13 @@ describe MEACControl::XML::Response do
     end
   end
 
+  describe "#to_xml" do
+    it "returns the response xml string" do
+      response = MEACControl::XML::Response.new(@string_ok)
+      response.to_xml.should == @string_ok
+    end
+  end
+
   describe "#ok?" do
     it "returns true if the response has no error messages" do
       response = MEACControl::XML::Response.new(@string_ok)

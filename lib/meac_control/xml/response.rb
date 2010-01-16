@@ -12,6 +12,10 @@ module MEACControl
         raise(MEACControl::XML::InvalidResponse, @xml.to_s) if @xml.root.nil?
       end
 
+      def to_xml
+        @xml.to_s
+      end
+
       def ok?
         !errors?
       end
