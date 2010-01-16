@@ -1,4 +1,5 @@
 require 'nokogiri'
+require 'meac_control/xml/exceptions'
 
 module MEACControl
   module XML
@@ -7,6 +8,7 @@ module MEACControl
 
       def initialize(xml)
         @xml = ::Nokogiri::XML(xml)
+        raise(InvalidXml) if @xml.root.nil?
       end
 
       def ok?

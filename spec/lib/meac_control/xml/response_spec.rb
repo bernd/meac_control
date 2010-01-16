@@ -12,6 +12,10 @@ describe MEACControl::XML::Response do
     response.xml.should  be_a(Nokogiri::XML::Document)
   end
 
+  it "will raise an error if the XML response has no root node" do
+    lambda { MEACControl::XML::Response.new('foo') }.should raise_error(MEACControl::XML::Response::InvalidXml)
+  end
+
   describe "#ok?" do
     it "returns true if the response has no error messages" do
       response = MEACControl::XML::Response.new(@string_ok)
