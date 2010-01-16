@@ -7,3 +7,7 @@ $:.unshift File.join(SPEC_ROOT.parent, 'lib')
 
 # Pull the shared examples.
 require File.join(SPEC_ROOT, 'support', 'shared_examples')
+
+def fixture_read(filename)
+  File.read(File.join(SPEC_ROOT, 'fixtures', filename))
+end

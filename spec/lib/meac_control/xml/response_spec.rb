@@ -3,8 +3,8 @@ require 'meac_control/xml/response'
 
 describe MEACControl::XML::Response do
   before(:each) do
-    @string_ok = File.read(File.join(SPEC_ROOT, 'fixtures', 'get-response-ok.xml'))
-    @string_error = File.read(File.join(SPEC_ROOT, 'fixtures', 'get-response-error.xml'))
+    @string_ok = fixture_read('get-response-ok.xml')
+    @string_error = fixture_read('get-response-error.xml')
   end
 
   it "creates a response from a xml string" do
