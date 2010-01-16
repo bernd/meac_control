@@ -39,19 +39,12 @@ unless options.ip and options.device and !options.commands.empty?
   exit 1
 end
 
-xml = MEACControl::XML::GetRequest.new(options.device, options.commands)
+response = MEACControl::HTTP.get(options.ip, options.device, options.commands)
 
 puts "########### get request ###########"
-puts xml.to_xml
+puts response.request.to_xml
 puts ""
 
-header = {'Accept' => 'text/xml', 'Content-Type' => 'text/xml'}
-
-client = HTTPClient.new
-client.protocol_version = 'HTTP/1.0'
-client.agent_name = 'meac_control/1.0'
-response = client.post("http://#{options.ip}/servlet/MIMEReceiveServlet", xml.to_xml, header)
-
 puts "########### get response ###########"
-puts response.content
+puts response.to_xml
 puts ""
