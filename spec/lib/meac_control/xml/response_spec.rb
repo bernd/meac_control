@@ -5,6 +5,7 @@ describe MEACControl::XML::Response do
   before(:each) do
     @string_ok = fixture_read('get-response-ok.xml')
     @string_error = fixture_read('get-response-error.xml')
+    @request = mock('xml_request')
   end
 
   it "creates a response from a xml string" do
@@ -12,8 +13,20 @@ describe MEACControl::XML::Response do
     response.xml.should  be_a(Nokogiri::XML::Document)
   end
 
+  it "creates a response from a xml string and a request object" do
+    response = MEACControl::XML::Response.new(@string_ok, @request)
+    response.xml.should  be_a(Nokogiri::XML::Document)
+  end
+
   it "will raise an error if the XML response has no root node" do
     lambda { MEACControl::XML::Response.new('foo') }.should raise_error(MEACControl::XML::InvalidResponse)
+  end
+
+  describe "#request" do
+    it "returns the request object" do
+      response = MEACControl::XML::Response.new(@string_ok, @request)
+      response.request.should == @request
+    end
   end
 
   describe "#ok?" do

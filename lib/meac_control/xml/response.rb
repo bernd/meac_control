@@ -4,10 +4,11 @@ require 'meac_control/xml/exceptions'
 module MEACControl
   module XML
     class Response
-      attr_reader :xml
+      attr_reader :xml, :request
 
-      def initialize(xml)
+      def initialize(xml, request = nil)
         @xml = ::Nokogiri::XML(xml)
+        @request = request
         raise(MEACControl::XML::InvalidResponse, @xml.to_s) if @xml.root.nil?
       end
 
