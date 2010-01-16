@@ -13,7 +13,7 @@ describe MEACControl::XML::Response do
   end
 
   it "will raise an error if the XML response has no root node" do
-    lambda { MEACControl::XML::Response.new('foo') }.should raise_error(MEACControl::XML::Response::InvalidXml)
+    lambda { MEACControl::XML::Response.new('foo') }.should raise_error(MEACControl::XML::InvalidResponse)
   end
 
   describe "#ok?" do

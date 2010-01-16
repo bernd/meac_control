@@ -8,7 +8,7 @@ module MEACControl
 
       def initialize(xml)
         @xml = ::Nokogiri::XML(xml)
-        raise(InvalidXml) if @xml.root.nil?
+        raise(MEACControl::XML::InvalidResponse) if @xml.root.nil?
       end
 
       def ok?
