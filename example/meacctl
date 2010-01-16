@@ -51,6 +51,11 @@ opts = OptionParser.new do |o|
     options.commands << MEACControl::Command::FanSpeed.request
   end
 
+  o.on('--query-inlet-temp', 'Query the current inlet temperature') do
+    options.query_mode = true
+    options.commands << MEACControl::Command::InletTemp.request
+  end
+
   o.on('--on', 'Turn AC on') do
     cmd = MEACControl::Command::Drive.new
     cmd.on
