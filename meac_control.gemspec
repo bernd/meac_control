@@ -9,7 +9,7 @@ Gem::Specification.new do |s|
 
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.authors = ["Bernd Ahlers"]
-  s.date = %q{2010-01-16}
+  s.date = %q{2010-02-03}
   s.description = %q{Library to communicate with a Mitsubishi Electric G-50A centralized controller}
   s.email = %q{bernd@tuneafish.de}
   s.extra_rdoc_files = [
