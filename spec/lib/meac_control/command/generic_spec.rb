@@ -23,7 +23,7 @@ describe MEACControl::Command::Generic do
     end
 
     it "does not allow modifications" do
-      lambda { Cmd.request.on }.should raise_error(TypeError)
+      lambda { Cmd.request.on }.should raise_error
     end
   end
 
